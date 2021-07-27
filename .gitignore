@@ -20,3 +20,4 @@
 *.idea
 conf/*
 *.json
+bin/geoip
