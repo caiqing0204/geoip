@@ -1,0 +1,12 @@
+{
+  "port": 9100,
+  "redis": {
+    "host": "",
+    "db": 0,
+    "password": ""
+  },
+  "geoip": {
+    "ak": "",
+    "sk": ""
+  }
+}
