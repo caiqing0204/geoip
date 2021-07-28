@@ -15,6 +15,8 @@ type zeroLogger struct {
 	options Options
 }
 
+var _ logger.Interface = &zeroLogger{}
+
 func (l *zeroLogger) Init(opts ...logger.Option) error {
 	zlog.Info().Msg("logger init start")
 	for _, o := range opts {

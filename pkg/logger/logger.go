@@ -89,7 +89,7 @@ func Warnf(message string, args ...interface{}) {
 }
 
 func Error(args ...interface{}) {
-	DefaultLogger.Log(ErrorLevel, args)
+	DefaultLogger.Log(ErrorLevel, args...)
 }
 
 func Errorf(message string, args ...interface{}) {
@@ -97,52 +97,54 @@ func Errorf(message string, args ...interface{}) {
 }
 
 func Debug(args ...interface{}) {
-	DefaultLogger.Log(DebugLevel, args)
+	DefaultLogger.Log(DebugLevel, args...)
 }
 
 func Debugf(message string, args ...interface{}) {
-	DefaultLogger.Logf(DebugLevel, message, args)
+	DefaultLogger.Logf(DebugLevel, message, args...)
 }
 func Fatal(args ...interface{}) {
-	DefaultLogger.Log(FatalLevel, args)
+	DefaultLogger.Log(FatalLevel, args...)
 }
 
 func Fatalf(message string, args ...interface{}) {
-	DefaultLogger.Logf(FatalLevel, message, args)
+	DefaultLogger.Logf(FatalLevel, message, args...)
 }
 
 type defaultLogger struct{}
+
+var _ Interface = &defaultLogger{}
 
 func (d defaultLogger) Init(option ...Option) error {
 	return nil
 }
 
 func (d defaultLogger) Log(level Level, args ...interface{}) {
-	log.Println(args)
+	log.Println(args...)
 }
 
 func (d defaultLogger) Logf(level Level, message string, args ...interface{}) {
-	log.Printf(message, args)
+	log.Printf(message, args...)
 }
 
 func (d defaultLogger) Info(ctx context.Context, message string, args ...interface{}) {
-	log.Printf(message, args)
+	log.Printf(message, args...)
 }
 
 func (d defaultLogger) Error(ctx context.Context, message string, args ...interface{}) {
-	log.Printf(message, args)
+	log.Printf(message, args...)
 }
 
 func (d defaultLogger) Warn(ctx context.Context, message string, args ...interface{}) {
-	log.Printf(message, args)
+	log.Printf(message, args...)
 }
 
 func (d defaultLogger) Debug(ctx context.Context, message string, args ...interface{}) {
-	log.Printf(message, args)
+	log.Printf(message, args...)
 }
 
 func (d defaultLogger) Fatal(ctx context.Context, message string, args ...interface{}) {
-	log.Fatal(fmt.Sprintf(message, args))
+	log.Fatal(fmt.Sprintf(message, args...))
 }
 
 func (d defaultLogger) Trace(ctx context.Context, begin time.Time, f func() (string, int64), err error) {
