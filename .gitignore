@@ -18,6 +18,6 @@
 *.log
 *.ids
 *.idea
-conf/*
-*.json
+conf/prod.json
+conf/test.json
 bin/geoip
