@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"geoip/pkg/cache"
 	"geoip/pkg/codec"
+	"geoip/pkg/logger"
 )
 
 type geoipCache struct {
@@ -60,6 +61,7 @@ func (g *geoipCache) Select(ipv4 IPV4) *IPLocation {
 	ip := &IPLocation{}
 	err = g.codec.Unmarshal(b, ip)
 	if err != nil {
+		logger.Errorf("geoip cache unmarshal ip:%s err:%s", ipv4.String(), err)
 		return nil
 	}
 	return ip
@@ -73,7 +75,7 @@ func (g *geoipCache) Update(ipv4 IPV4, location *IPLocation) bool {
 	}
 	err = g.client.Set(name, value)
 	if err != nil {
-		fmt.Println(err)
+		logger.Errorf("geoip cache set ip:%s err:%s", ipv4.String(), err)
 		return false
 	}
 	return true
@@ -83,6 +85,7 @@ func (g *geoipCache) Delete(ipv4 IPV4) bool {
 	name := g.format(ipv4)
 	err := g.client.Del(name)
 	if err != nil {
+		logger.Errorf("geoip cache del ip:%s err:%s", ipv4.String(), err)
 		return false
 	}
 	return true
