@@ -12,7 +12,7 @@ type GeoIpConfig struct {
 }
 
 type GlobalConfig struct {
-	Port int `json:"port"`
+	Port  int         `json:"port"`
 	Redis RedisConfig `json:"redis"`
 	GeoIp GeoIpConfig `json:"geoip"`
 }

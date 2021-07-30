@@ -80,7 +80,7 @@ func daemon(conf *config.GlobalConfig) {
 			c.JSON(http.StatusOK, &IPLocationResponse{BaseResponse{Code: 0, Msg: "success"}, *result})
 			return
 		} else {
-			c.JSON(http.StatusOK, &BaseResponse{1, "IP不合法或IP参数未传"})
+			c.JSON(http.StatusOK, &BaseResponse{Code: 1, Msg: "IP不合法或IP参数未传"})
 			return
 		}
 	})
